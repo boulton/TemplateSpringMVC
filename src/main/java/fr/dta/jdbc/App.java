@@ -29,15 +29,35 @@ public class App {
 		context.close();
 	}
 
-	public static User dbUser() throws Exception{
+	
+	public static User dbSetUser(User user) throws Exception {
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(App.class);
 		dao = context.getBean(UserDao.class);
-		dao.createTable();
-		User user = new User();
 		System.out.println(user.getEmail());
+	
 		dao.setUser(user);
 		return user;
+		
 	}
 	
+	public static User dbDelUser(User user) throws Exception {
+		AbstractApplicationContext context = new AnnotationConfigApplicationContext(App.class);
+		dao = context.getBean(UserDao.class);
+		System.out.println(user.getEmail());
+	
+		dao.delUser(user);
+		return user;
+		
+	}
+	
+	public static User dbAddUser(User user) throws Exception {
+		AbstractApplicationContext context = new AnnotationConfigApplicationContext(App.class);
+		dao = context.getBean(UserDao.class);
+		System.out.println(user.getEmail());
+	
+		dao.setUser(user);
+		return user;
+		
+	}
 	
 }

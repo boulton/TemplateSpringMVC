@@ -45,7 +45,11 @@ public class UserDao {
 		jdbcTemplate.update("insert into "+dbName+"  values (?,?,?,?,?)",id , fname, lname, email, password);
 		
 	}
-
+	
+	public void delUser(User user) {
+		jdbcTemplate.update("DELETE FROM"+dbName+"WHERE 'id'= ?",user.getId());
+		
+	}
 	
 	public void getCsv() {
 
@@ -53,4 +57,14 @@ public class UserDao {
 
 	}
 
+	
+	public void changeUser(User user) {
+		jdbcTemplate.update("UPDATE "+dbName+"SET firstname=?,lastname=?, email=?, password=? WHERE 'id'= ?",user.getFname(), user.getLname(), user.getEmail(), user.getPassword(), user.getId());
+		
+	}
+
+	
+	
+	
+	
 }
