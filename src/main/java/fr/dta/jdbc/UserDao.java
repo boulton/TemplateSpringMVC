@@ -2,6 +2,8 @@ package fr.dta.jdbc;
 
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.List;
+import java.util.Optional;
 
 import javax.sql.DataSource;
 
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 
 
 @Repository
@@ -61,6 +64,17 @@ public class UserDao {
 	public void changeUser(User user) {
 		jdbcTemplate.update("UPDATE "+dbName+"SET firstname=?,lastname=?, email=?, password=? WHERE 'id'= ?",user.getFname(), user.getLname(), user.getEmail(), user.getPassword(), user.getId());
 		
+	}
+
+	public Optional<User> findOneByLogin(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<User> getUser() {
+		
+
+		return jdbcTemplate.query("select * from "+dbName, new UserMapper());
 	}
 
 	
